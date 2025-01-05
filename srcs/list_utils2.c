@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:49:59 by cshingai          #+#    #+#             */
-/*   Updated: 2024/12/24 14:07:13 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/05 18:47:19 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,24 @@ t_redir	*ft_lst_last(t_redir *lst)
 	while (lst && lst->next)
 		lst = lst->next;
 	return (lst);
+}
+
+void	free_redir(t_redir **redir_list)
+{
+	t_redir	*aux1;
+	t_redir	*aux2;
+
+	if (redir_list)
+	{
+		aux1 = *redir_list;
+		while (aux1)
+		{
+			aux2 = aux1->next;
+			if (aux1->file)
+				free(aux1->file);
+			free(aux1);
+			aux1 = aux2;
+		}
+		*redir_list = NULL;
+	}
 }

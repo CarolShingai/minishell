@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 19:26:31 by lsouza-r          #+#    #+#             */
-/*   Updated: 2024/12/27 20:32:51 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/05 18:45:44 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void	*free_tree(t_tree **tree)
 		free_tree(&(*tree)->left);
 	if ((*tree)->sub_list)
 		free_list(&(*tree)->sub_list);
+	if ((*tree)->redir)
+		free_redir(&(*tree)->redir);
 	free(*tree);
 	*tree = NULL;
 	return (NULL);

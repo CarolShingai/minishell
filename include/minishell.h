@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:44:30 by lsouza-r          #+#    #+#             */
-/*   Updated: 2024/12/29 15:31:40 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/05 18:47:03 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ typedef struct s_tkn_data
 
 typedef struct s_redir
 {
-	int	rd_type;
-	char	*file;
+	int				rd_type;
+	char			*file;
 	struct s_redir	*next;
 }	t_redir;
 
@@ -157,6 +157,7 @@ t_redir	*ft_lst_new(char *file, int rd_type);
 void	ft_lst_add_back(t_redir **lst, t_redir *new);
 t_redir	*ft_lst_last(t_redir *lst);
 void	free_pid_list(t_lst **pid);
+void	free_redir(t_redir **redir_list);
 
 //parsing-tree
 t_tree	*build_tree(t_list	*tkn_list);
