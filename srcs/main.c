@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 17:49:25 by cshingai          #+#    #+#             */
-/*   Updated: 2025/01/05 19:19:43 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 19:23:30 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,11 @@ volatile int	g_signal;
 // 	}
 // }
 
-
-
-
 int	main(int argc __attribute__((unused)), \
 		char **argv __attribute__((unused)), char **envp)
 {
 	t_minishell	shell;
 	int			prompt_has_only_spaces;
-
-	// char *envp[] = { "HOME=/home/daniel", "PATH=/bin:/usr/bin",
-	// 	"PWD=/home/daniel/Documentos/GitHub/minishell-carolluana", NULL };
 
 	init_shell(&shell);
 	shell.envp_list = create_env_list(envp);
@@ -76,9 +70,7 @@ int	main(int argc __attribute__((unused)), \
 		shell.token_list = NULL;
 		shell.tree = NULL;
 		shell.token_list = tokenizer(shell.prompt);
-
 		prompt_has_only_spaces = shell.prompt[0] != '\0' && ft_is_space_str(shell.prompt) == 0;
-
 		add_history(shell.prompt);
 		free(shell.prompt);
 		shell.prompt = NULL;
@@ -89,11 +81,12 @@ int	main(int argc __attribute__((unused)), \
 				hunt_heredoc(shell.token_list, &shell);
 				if (shell.token_list && g_signal == 0)
 					shell.tree = build_root(shell.token_list);
+				else if (g_signal)
+					free_list(&shell.token_list);
 				if (shell.tree)
 					executor(shell.tree, &shell);
 				wait_pid(&shell);
 				close_fd(&shell);
-
 				free_pid_list(&shell.pid);
 				shell.token_list = NULL;
 			}

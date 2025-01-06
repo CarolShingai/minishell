@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:59:12 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/06 18:48:37 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 19:16:01 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void	exec_cmd(t_tree	*tree, t_minishell *shell)
 	if (access(full_path, F_OK) != 0)
 	{
 		perror(exec->cmd);
-		// dar free nas coisas
+		free(full_path);
 		free_execve(exec);
 		free_minishell(shell);
 		exit(127);
@@ -174,7 +174,7 @@ void	exec_cmd(t_tree	*tree, t_minishell *shell)
 	if (access(full_path, X_OK) != 0)
 	{
 		perror(exec->cmd);
-		// dar free nas coisas
+		free(full_path);
 		free_execve(exec);
 		free_minishell(shell);
 		exit(126);
@@ -182,7 +182,7 @@ void	exec_cmd(t_tree	*tree, t_minishell *shell)
 	if (is_a_dir(full_path))
 	{
 		ft_printf_fd(STDERR_FILENO, "%s: is a directory\n", exec->cmd);
-		// dar free nas coisas
+		free(full_path);
 		free_execve(exec);
 		free_minishell(shell);
 		exit(126);
@@ -193,7 +193,7 @@ void	exec_cmd(t_tree	*tree, t_minishell *shell)
 	// A patir daqui deu ruim
 
 	perror(full_path);
-
+	free(full_path);
 	// dar free nas coisas
 	free_execve(exec);
 	free_minishell(shell);

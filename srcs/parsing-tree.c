@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:53:50 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/06 18:20:19 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 19:22:15 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,8 @@ void	build_branch(t_list *tkn_list, t_tree *pivot)
 	}
 	else
 	{
-
 		pivot->redir = hunt_redir(&tkn_list);
 		pivot->sub_list = tkn_list;
-		if (!tkn_list)
-		{
-			printf("MEXILHÕES!!!!! TA NULO ESSA BAGAÇA\n");
-		}
-		if (pivot->redir)
-			printf("REDIR: %s\n", pivot->redir->file);
 		pivot->tkn_type = COMMAND;
 		pivot->left = NULL;
 		pivot->right = NULL;
