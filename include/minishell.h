@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:44:30 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/05 18:56:19 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 17:59:11 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 # include "get_next_line.h"
 
 extern int volatile	g_signal;
-
-
 //****************************************************************************//
 //                               TOKENIZER                                    //
 //****************************************************************************//
@@ -62,7 +60,7 @@ typedef struct s_token_list
 	t_token				token;
 	struct s_token_list	*next;
 	struct s_token_list	*prev;
-}	t_list ;
+}	t_list;
 
 typedef struct s_tkn_data
 {
@@ -71,7 +69,7 @@ typedef struct s_tkn_data
 	char	*lexema;
 	int		state;
 	int		tkn_type;
-}	t_tkn_data ;
+}	t_tkn_data;
 
 typedef struct s_redir
 {
@@ -89,7 +87,7 @@ typedef struct s_tree
 	struct s_tree	*left;
 	struct s_tree	*right;
 	struct s_tree	*parent;
-}	t_tree ;
+}	t_tree;
 
 typedef struct s_envp
 {
@@ -117,14 +115,14 @@ typedef struct s_minishell
 	char		**path;
 	char		*prompt;
 	int			status;
-	int		fd_stdin;
-	int		fd_stdout;
-}	t_minishell ;
+	int			fd_stdin;
+	int			fd_stdout;
+}	t_minishell;
 
 typedef struct s_execve
 {
 	char	**args;
-	char	*cmd;/* data */
+	char	*cmd;
 }	t_execve;
 
 // main.c
@@ -133,8 +131,9 @@ typedef struct s_execve
 t_list	*tokenizer(char *str);
 void	init_token_data(t_tkn_data *tkn_data, char *str);
 int		is_final_state(t_tkn_data tkn_data);
-void	put_token_on_list(t_tkn_data *tkn_data, char *str, t_list **token_list, int i);
-int		get_token_type(int	state);
+void	put_token_on_list(t_tkn_data *tkn_data, char *str,
+			t_list **token_list, int i);
+int		get_token_type(int state);
 int		token_get_next_state(int state, char c);
 int		token_get_state_30(char c);
 int		token_get_state_40(char c);
@@ -251,7 +250,6 @@ void	sig_handler_heredoc(int signal);
 
 //utils.c
 void	*free_split(char **str);
-
 void	add_status_signal(int s, t_minishell *shell);
 int		ft_is_space_str(char *str);
 
@@ -268,6 +266,7 @@ void	expander_heredoc(char **line, t_minishell *shell);
 void	hunt_heredoc(t_list *tkn_list, t_minishell *shell);
 void	create_heredoc(t_list *delimiter, int tag, t_minishell *shell);
 char	*create_file_path(int tag);
-void	process_heredoc_input(t_list *delimiter, t_minishell *shell, int fd, char *file_path);
+void	process_heredoc_input(t_list *delimiter, t_minishell *shell,
+			int fd, char *file_path);
 
 #endif

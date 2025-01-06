@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:59:12 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/05 19:15:43 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 18:48:37 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -379,6 +379,7 @@ int	handle_redir(t_tree	*tree, t_minishell *shell)
 			if (fd == -1)
 			{
 				perror(expanded_file);
+				free(expanded_file);
 				return (1);
 			}
 			dup2(fd, STDOUT_FILENO);
@@ -390,6 +391,7 @@ int	handle_redir(t_tree	*tree, t_minishell *shell)
 			if (fd == -1)
 			{
 				perror(expanded_file);
+				free(expanded_file);
 				return (1);
 			}
 			dup2(fd, STDOUT_FILENO);
@@ -401,6 +403,7 @@ int	handle_redir(t_tree	*tree, t_minishell *shell)
 			if (fd == -1)
 			{
 				perror(expanded_file);
+				free(expanded_file);
 				return (1);
 			}
 			dup2(fd, STDIN_FILENO);
@@ -448,6 +451,11 @@ void	exec_single_cmd(t_tree *tree, t_minishell *shell)
 				expander(tree->sub_list, shell);
 				close_fd(shell);
 				exec_cmd(tree, shell);
+			}
+			else
+			{
+				free_minishell(shell);
+				close_fd(shell);
 			}
 			exit(1);
 		}

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:49:59 by cshingai          #+#    #+#             */
-/*   Updated: 2025/01/05 18:47:19 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 18:28:56 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_redir	*ft_lst_new(char *file, int rd_type)
 	new_node = ft_calloc(1, sizeof(t_redir));
 	if (!new_node)
 		return (NULL);
-	new_node->file = file;
+	new_node->file = ft_strdup(file);
 	new_node->rd_type = rd_type;
 	new_node->next = NULL;
 	return (new_node);

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:47:17 by cshingai          #+#    #+#             */
-/*   Updated: 2025/01/06 16:54:27 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 17:52:07 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	change_directory(t_envp **env_list, char **path)
 	char	old_pwd[PATH_MAX];
 	char	pwd[PATH_MAX];
 	char	*new_path;
+
 	new_path = *path;
 	if (*path == NULL)
 		new_path = ft_getenv("HOME", *env_list);

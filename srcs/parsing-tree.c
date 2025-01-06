@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:53:50 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/05 19:36:28 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 18:20:19 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_redir	*hunt_redir(t_list	**tkn_list)
 {
 	t_list	*node;
 	t_redir	*redir;
+	t_list	*to_be_free;
 
 	node = *tkn_list;
 	redir = NULL;
@@ -98,19 +99,18 @@ t_redir	*hunt_redir(t_list	**tkn_list)
 			{
 				*tkn_list = NULL;
 			}
-			// free_token = node;
+			to_be_free = node;
 			node = node->next;
-			// free(free_token->token.lexeme);
-			// free(free_token);
-			// free_token = NULL;
-			// free_token = node;
-			// node = node->next;
-			// free(free_token->token.lexeme);
-			// free(free_token);
-			// free_token = NULL;
+			free(to_be_free);
+			to_be_free = NULL;
+			to_be_free = node;
+			node = node->next;
+			free(to_be_free->token.lexeme);
+			free(to_be_free);
+			to_be_free = NULL;
 		}
-		// else
-		node = node->next;
+		else
+			node = node->next;
 	}
 	return (redir);
 }
