@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:07:56 by cshingai          #+#    #+#             */
-/*   Updated: 2024/12/26 18:28:24 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 16:57:10 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,6 @@
 int	ft_exit(t_minishell *shell, char **arg)
 {
 	int	exit_status;
-
-	//	Ele sai sem reclamar
-	//		Se o primeiro argumento for válido e só tiver ele
-
-	//	Ele sai reclamando
-	//		Se o primeiro argumento for inválido
-
-	//	Ele não sai e reclama
-	//		Se o primeiro argumento for válido e tiver mais do que um argumento
 
 	if (arg[0] && (is_numeric_arg(arg[0]) == 0 || valide_arg_length(arg[0]) == 0))
 		exit_status = 2;

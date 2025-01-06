@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:47:17 by cshingai          #+#    #+#             */
-/*   Updated: 2024/12/27 17:14:51 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 16:54:27 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,6 @@ int	change_directory(t_envp **env_list, char **path)
 	char	old_pwd[PATH_MAX];
 	char	pwd[PATH_MAX];
 	char	*new_path;
-
-	//	1 - Verificar quantidade de argumentos
-	//	2 - Verificar se o path é nulo
-	//		2.1 - Se for nulo, pegar o valor da variável HOME
-	//		2.1.1 - Se não existir a variável HOME, retornar erro
-	//	3 - Verificar se o path é igual a ~
-	//		3.1 - Se for igual a ~, pegar o valor da variável HOME
-	//		3.1.1 - Se não existir a variável HOME, retornar erro
-	//	4 - Verificar se o path é igual a -
-	//		4.1 - Se for igual a -, pegar o valor da variável OLDPWD
-	//		4.1.1 - Se não existir a variável OLDPWD, retornar erro
-	//	5 - Verificar se o path é um diretório válido
-	//		5.1 - Se não for um diretório válido, retornar erro
-	//	6 - Pegar o valor da variável OLDPWD
-	//	7 - Mudar o diretório
-	//		7.1 - Se não conseguir mudar o diretório, retornar erro
-	//	8 - Pegar o valor do diretório atual
-	//	9 - Atualizar as variáveis OLDPWD e PWD
-	//	10 - Retornar 0
-
 	new_path = *path;
 	if (*path == NULL)
 		new_path = ft_getenv("HOME", *env_list);
@@ -60,15 +40,9 @@ int	change_directory(t_envp **env_list, char **path)
 void	update_pwd(t_envp **env_list, char *old_pwd, char *pwd)
 {
 	if (old_pwd)
-	{
 		change_env_value("OLDPWD", old_pwd, env_list);
-		// free(old_pwd);
-	}
 	if (pwd)
-	{
 		change_env_value("PWD", pwd, env_list);
-		// free(pwd);
-	}
 }
 
 int	check_path(char *new_path, char **path)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:59:12 by lsouza-r          #+#    #+#             */
-/*   Updated: 2024/12/29 18:01:41 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/05 19:15:43 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	free_minishell(t_minishell *shell)
 	free_env_list(shell->envp_list);
 	shell->envp_list = NULL;
 	free_envp_str(shell->envp);
+
 	rl_clear_history();
 	// free(shell->prompt);
 	// shell->prompt = NULL;
@@ -415,8 +416,6 @@ int	handle_redir(t_tree	*tree, t_minishell *shell)
 		expanded_file = NULL;
 		node = node->next;
 	}
-	free(expanded_file);
-	expanded_file = NULL;
 	return (0);
 }
 /**

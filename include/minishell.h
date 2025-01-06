@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:44:30 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/05 18:47:03 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/05 18:56:19 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ void	ft_lst_add_back(t_redir **lst, t_redir *new);
 t_redir	*ft_lst_last(t_redir *lst);
 void	free_pid_list(t_lst **pid);
 void	free_redir(t_redir **redir_list);
+void	free_minishell(t_minishell *shell);
 
 //parsing-tree
 t_tree	*build_tree(t_list	*tkn_list);

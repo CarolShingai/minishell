@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:59:24 by cshingai          #+#    #+#             */
-/*   Updated: 2024/12/13 17:18:11 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 17:06:43 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,11 @@ int	export(char **arg, t_envp **env_list)
 		export_no_args(env_list);
 	while (arg[i])
 	{
-		// if (is_equal(arg[i], "export") == 1)
-		// {
-		// 	status_command = 1;
-		// 	i++;
-		// }
+		if (is_equal(arg[i], "export") == 1)
+		{
+			status_command = 1;
+			i++;
+		}
 		status_tmp = insert_var(arg[i], env_list);
 		if (status_tmp != 0)
 			status_command = 1;

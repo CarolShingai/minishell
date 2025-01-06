@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:41:19 by cshingai          #+#    #+#             */
-/*   Updated: 2024/12/13 17:19:11 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 17:18:28 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,17 @@ char	**get_key_value(char *arg, char **dest)
 
 	if (!arg)
 		return (NULL);
-	dest = calloc(3, sizeof(char *));
+	dest = ft_calloc(3, sizeof(char *));
 	i = 0;
 	j = 0;
 	while (arg[i] && arg[i] != '=')
 		i++;
-	dest[0] = calloc(i + 1, sizeof(char));
+	dest[0] = ft_calloc(i + 1, sizeof(char));
 	i = 0;
 	while (arg[i] && arg[i] != '=')
 		dest[0][j++] = arg[i++];
 	dest[0][j] = '\0';
-	dest[1] = calloc(ft_strlen(arg) - i + 1, sizeof(char));
+	dest[1] = ft_calloc(ft_strlen(arg) - i + 1, sizeof(char));
 	if (arg[i] == '=')
 		i++;
 	j = 0;
