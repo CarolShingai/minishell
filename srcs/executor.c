@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:59:12 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/06 19:16:01 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 22:54:44 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,154 +103,154 @@ void	free_execve(t_execve *exec)
  * @tree: Pointer to the syntax tree node containing the command.
  * @shell: Pointer to the minishell structure containing environment variables.
  */
-void	exec_cmd(t_tree	*tree, t_minishell *shell)
-{
-	t_execve	*exec;
-	int			i;
-	char		*path_slash;
-	char		*full_path;
+// void	exec_cmd(t_tree	*tree, t_minishell *shell)
+// {
+// 	t_execve	*exec;
+// 	int			i;
+// 	char		*path_slash;
+// 	char		*full_path;
 
-	//	1 - Pegar a variável PATH
-	//	2 - Verificar se o comando é pra expandir ou não
-	//	3 - Se sim, expandir usando a PATH
-	//		3.1 - Se a PATH não existir, comando não encontrado e dar exit 127
-	//		3.2 - Se executornão for entrado na PATH, comando não encontrado e dar exit 127
-	//	4 - Se não, usar o próprio exec->cmd
-	//	5 - colocar o comando no full_path
-	//	6 - verificar se o full_path existe
-	//		6.1 - Se não, comando não encontrado e dar exit 127
-	//	7 - Verificar se full_path tem permissão de execução
-	//		7.1 - Se não, permissão negada e dar exit 126
-	//	8 - Executar o comando
-	//		8.1 - Se falhar, perror(exec->cmd) e exit 1
+// 	//	1 - Pegar a variável PATH
+// 	//	2 - Verificar se o comando é pra expandir ou não
+// 	//	3 - Se sim, expandir usando a PATH
+// 	//		3.1 - Se a PATH não existir, comando não encontrado e dar exit 127
+// 	//		3.2 - Se executornão for entrado na PATH, comando não encontrado e dar exit 127
+// 	//	4 - Se não, usar o próprio exec->cmd
+// 	//	5 - colocar o comando no full_path
+// 	//	6 - verificar se o full_path existe
+// 	//		6.1 - Se não, comando não encontrado e dar exit 127
+// 	//	7 - Verificar se full_path tem permissão de execução
+// 	//		7.1 - Se não, permissão negada e dar exit 126
+// 	//	8 - Executar o comando
+// 	//		8.1 - Se falhar, perror(exec->cmd) e exit 1
 
-	i = 0;
-	exec = ft_calloc(1, sizeof(t_execve));
-	full_path = NULL;
-	get_path(shell);
-	get_args(tree->sub_list, exec);
-	if (ft_strchr(exec->cmd, '/') == NULL) // Comando para expandir
-	{
-		while (shell->path && shell->path[i])
-		{
-			path_slash = ft_strjoin(shell->path[i], "/");
-			full_path = ft_strjoin(path_slash, exec->cmd);
-			free(path_slash);
-			if (access(full_path, F_OK | X_OK) == 0)
-				break ;
-			free(full_path);
-			full_path = NULL;
-			i++;
-		}
+// 	i = 0;
+// 	exec = ft_calloc(1, sizeof(t_execve));
+// 	full_path = NULL;
+// 	get_path(shell);
+// 	get_args(tree->sub_list, exec);
+// 	if (ft_strchr(exec->cmd, '/') == NULL) // Comando para expandir
+// 	{
+// 		while (shell->path && shell->path[i])
+// 		{
+// 			path_slash = ft_strjoin(shell->path[i], "/");
+// 			full_path = ft_strjoin(path_slash, exec->cmd);
+// 			free(path_slash);
+// 			if (access(full_path, F_OK | X_OK) == 0)
+// 				break ;
+// 			free(full_path);
+// 			full_path = NULL;
+// 			i++;
+// 		}
 
-		if (shell->path == NULL || full_path == NULL)
-		{
-			// ft_putstr_fd(exec->cmd, STDERR_FILENO);
-			// ft_printf_fd(STDERR_FILENO, ": No such file or directory\n");
-			ft_printf_fd(STDERR_FILENO, "%s: No such file or directory\n", exec->cmd);
-			free_execve(exec);
-			free_minishell(shell);
-			exit(127);
-		}
-	}
-	else
-		full_path = ft_strdup(exec->cmd);
-	if (full_path == NULL)
-	{
-		ft_printf_fd(STDERR_FILENO, "%s: No such file or directory\n", exec->cmd);
-		free_execve(exec);
-		free_minishell(shell);
-		exit(127);
-	}
+// 		if (shell->path == NULL || full_path == NULL)
+// 		{
+// 			// ft_putstr_fd(exec->cmd, STDERR_FILENO);
+// 			// ft_printf_fd(STDERR_FILENO, ": No such file or directory\n");
+// 			ft_printf_fd(STDERR_FILENO, "%s: No such file or directory\n", exec->cmd);
+// 			free_execve(exec);
+// 			free_minishell(shell);
+// 			exit(127);
+// 		}
+// 	}
+// 	else
+// 		full_path = ft_strdup(exec->cmd);
+// 	if (full_path == NULL)
+// 	{
+// 		ft_printf_fd(STDERR_FILENO, "%s: No such file or directory\n", exec->cmd);
+// 		free_execve(exec);
+// 		free_minishell(shell);
+// 		exit(127);
+// 	}
 
-	if (access(full_path, F_OK) != 0)
-	{
-		perror(exec->cmd);
-		free(full_path);
-		free_execve(exec);
-		free_minishell(shell);
-		exit(127);
-	}
-	if (access(full_path, X_OK) != 0)
-	{
-		perror(exec->cmd);
-		free(full_path);
-		free_execve(exec);
-		free_minishell(shell);
-		exit(126);
-	}
-	if (is_a_dir(full_path))
-	{
-		ft_printf_fd(STDERR_FILENO, "%s: is a directory\n", exec->cmd);
-		free(full_path);
-		free_execve(exec);
-		free_minishell(shell);
-		exit(126);
-	}
+// 	if (access(full_path, F_OK) != 0)
+// 	{
+// 		perror(exec->cmd);
+// 		free(full_path);
+// 		free_execve(exec);
+// 		free_minishell(shell);
+// 		exit(127);
+// 	}
+// 	if (access(full_path, X_OK) != 0)
+// 	{
+// 		perror(exec->cmd);
+// 		free(full_path);
+// 		free_execve(exec);
+// 		free_minishell(shell);
+// 		exit(126);
+// 	}
+// 	if (is_a_dir(full_path))
+// 	{
+// 		ft_printf_fd(STDERR_FILENO, "%s: is a directory\n", exec->cmd);
+// 		free(full_path);
+// 		free_execve(exec);
+// 		free_minishell(shell);
+// 		exit(126);
+// 	}
 
-	execve(full_path, exec->args, shell->envp);
+// 	execve(full_path, exec->args, shell->envp);
 
-	// A patir daqui deu ruim
+// 	// A patir daqui deu ruim
 
-	perror(full_path);
-	free(full_path);
-	// dar free nas coisas
-	free_execve(exec);
-	free_minishell(shell);
-	exit(1);
+// 	perror(full_path);
+// 	free(full_path);
+// 	// dar free nas coisas
+// 	free_execve(exec);
+// 	free_minishell(shell);
+// 	exit(1);
 
 
-	// i = 0;
-	// // ret_code = 0;
-	// exec = ft_calloc(1, sizeof(t_execve));
-	// get_path(shell);
-	// get_args(tree->sub_list, exec);
-	// full_path = NULL;
-	// if (ft_strchr(exec->cmd, '/') == NULL && exec->cmd[0])
-	// {
-	// 	while (shell->path && shell->path[i])
-	// 	{
-	// 		path_slash = ft_strjoin(shell->path[i], "/");
-	// 		full_path = ft_strjoin(path_slash, exec->cmd);
-	// 		free(path_slash);
-	// 		if (access(full_path, F_OK | X_OK) == 0)
-	// 			break;
-	// 		free(full_path);
-	// 		full_path = NULL;
-	// 		i++;
-	// 	}
-	// }
-	// else
-	// 	full_path = ft_strdup(exec->cmd);
-	// if ((ft_strchr(exec->cmd, '/') != NULL || full_path)
-	// 		&& (full_path && access(full_path, F_OK | X_OK) == 0))
-	// 	execve(full_path, exec->args, shell->envp);
-	// if (!full_path || !full_path[0] || access(full_path, F_OK) != 0)
-	// {
-	// 	if (full_path)
-	// 		perror(exec->cmd);
-	// 	else
-	// 		ft_printf_fd(STDERR_FILENO, "%s: No such file or directory\n", exec->cmd);
-	// 	ret_code = 127;
-	// }
-	// else if (full_path && access(full_path, F_OK | X_OK) != 0)
-	// {
-	// 	perror(full_path);
-	// 	ret_code = 126;
-	// }
-	// else
-	// {
-	// 	perror(full_path);
-	// 	ret_code = 1;
-	// }
-	// // free(full_path);
-	// ft_ft_free_split(shell->path);
-	// ft_ft_free_split(exec->args);
-	// free(exec->cmd);
-	// free(exec);
-	// shell->status = ret_code;
-	// exit(ret_code);
-}
+// 	// i = 0;
+// 	// // ret_code = 0;
+// 	// exec = ft_calloc(1, sizeof(t_execve));
+// 	// get_path(shell);
+// 	// get_args(tree->sub_list, exec);
+// 	// full_path = NULL;
+// 	// if (ft_strchr(exec->cmd, '/') == NULL && exec->cmd[0])
+// 	// {
+// 	// 	while (shell->path && shell->path[i])
+// 	// 	{
+// 	// 		path_slash = ft_strjoin(shell->path[i], "/");
+// 	// 		full_path = ft_strjoin(path_slash, exec->cmd);
+// 	// 		free(path_slash);
+// 	// 		if (access(full_path, F_OK | X_OK) == 0)
+// 	// 			break;
+// 	// 		free(full_path);
+// 	// 		full_path = NULL;
+// 	// 		i++;
+// 	// 	}
+// 	// }
+// 	// else
+// 	// 	full_path = ft_strdup(exec->cmd);
+// 	// if ((ft_strchr(exec->cmd, '/') != NULL || full_path)
+// 	// 		&& (full_path && access(full_path, F_OK | X_OK) == 0))
+// 	// 	execve(full_path, exec->args, shell->envp);
+// 	// if (!full_path || !full_path[0] || access(full_path, F_OK) != 0)
+// 	// {
+// 	// 	if (full_path)
+// 	// 		perror(exec->cmd);
+// 	// 	else
+// 	// 		ft_printf_fd(STDERR_FILENO, "%s: No such file or directory\n", exec->cmd);
+// 	// 	ret_code = 127;
+// 	// }
+// 	// else if (full_path && access(full_path, F_OK | X_OK) != 0)
+// 	// {
+// 	// 	perror(full_path);
+// 	// 	ret_code = 126;
+// 	// }
+// 	// else
+// 	// {
+// 	// 	perror(full_path);
+// 	// 	ret_code = 1;
+// 	// }
+// 	// // free(full_path);
+// 	// ft_ft_free_split(shell->path);
+// 	// ft_ft_free_split(exec->args);
+// 	// free(exec->cmd);
+// 	// free(exec);
+// 	// shell->status = ret_code;
+// 	// exit(ret_code);
+// }
 
 /**
  * executor - Executes commands or pipelines based on the syntax tree.
@@ -294,6 +294,117 @@ void	executor(t_tree *tree, t_minishell *shell)
  *
  * Return: Always returns 0.
  */
+// int	handle_pipe(t_tree *tree, t_minishell *shell, int left)
+// {
+// 	pid_t pid[2];
+
+// 	if (left == 1)
+// 	{
+// 		pid[0] = fork();
+// 		if (pid[0] == 0)
+// 		{
+// 			dup2(tree->fd[1], STDOUT_FILENO);
+// 			close(tree->fd[0]);
+// 			close(tree->fd[1]);
+// 			if (handle_redir(tree->left, shell) == 0)
+// 			{
+// 				expander(tree->left->sub_list, shell);
+// 				close_fd(shell);
+// 				if (is_builtin(tree->left))
+// 				{
+// 					shell->status = execute_builtin(shell, tree->left);
+// 					free_minishell(shell);
+// 					exit(shell->status);
+// 				}
+// 				exec_cmd(tree->left, shell);
+// 			}
+// 			free_minishell(shell);
+// 			exit(1);
+// 		}
+// 		ft_lstadd_back(&(shell->pid), ft_lstnew((void *)((long)pid[0])));
+// 	}
+// 	pid[1] = fork();
+// 	if (pid[1] == 0)
+// 	{
+// 		dup2(tree->fd[0], STDIN_FILENO);
+// 		if (tree->parent)
+// 		{
+// 			dup2(tree->parent->fd[1], STDOUT_FILENO);
+// 			close(tree->parent->fd[1]);
+// 			// close(tree->parent->fd[0]);
+// 		}
+// 		close(tree->fd[0]);
+// 		close(tree->fd[1]);
+// 		if (handle_redir(tree->right, shell) == 0)
+// 		{
+// 			expander(tree->right->sub_list, shell);
+// 			close_fd(shell);
+// 			if (is_builtin(tree->right))
+// 			{
+// 				shell->status = execute_builtin(shell, tree->right);
+// 				free_minishell(shell);
+// 				exit(shell->status);
+// 			}
+// 			exec_cmd(tree->right, shell);
+// 		}
+// 		free_minishell(shell);
+// 		exit(1);
+// 	}
+// 	ft_lstadd_back(&(shell->pid), ft_lstnew((void *)((long)pid[1])));
+// 		// waitpid(pid[0], &shell->status, 0);
+
+// 	// waitpid(pid[1], &shell->status, 0);
+// 	// shell->status = WEXITSTATUS(shell->status);
+// 	return (0);
+// }
+
+void	execute_left(t_tree *tree, t_minishell *shell)
+{
+	dup2(tree->fd[1], STDOUT_FILENO);
+	close(tree->fd[0]);
+	close(tree->fd[1]);
+	if (handle_redir(tree->left, shell) == 0)
+	{
+		expander(tree->left->sub_list, shell);
+		close_fd(shell);
+		if (is_builtin(tree->left))
+		{
+			shell->status = execute_builtin(shell, tree->left);
+			free_minishell(shell);
+			exit(shell->status);
+		}
+		exec_cmd(tree->left, shell);
+	}
+	free_minishell(shell);
+	exit(1);
+}
+
+void	execute_right(t_tree *tree, t_minishell *shell)
+{
+	dup2(tree->fd[0], STDIN_FILENO);
+	if (tree->parent)
+	{
+		dup2(tree->parent->fd[1], STDOUT_FILENO);
+		close(tree->parent->fd[1]);
+	}
+	close(tree->fd[0]);
+	close(tree->fd[1]);
+	if (handle_redir(tree->right, shell) == 0)
+	{
+		expander(tree->right->sub_list, shell);
+		close_fd(shell);
+		if (is_builtin(tree->right))
+		{
+			shell->status = execute_builtin(shell, tree->right);
+			free_minishell(shell);
+			exit(shell->status);
+		}
+		exec_cmd(tree->right, shell);
+	}
+	free_minishell(shell);
+	exit(1);
+}
+
 int	handle_pipe(t_tree *tree, t_minishell *shell, int left)
 {
 	pid_t pid[2];
@@ -302,61 +413,17 @@ int	handle_pipe(t_tree *tree, t_minishell *shell, int left)
 	{
 		pid[0] = fork();
 		if (pid[0] == 0)
-		{
-			dup2(tree->fd[1], STDOUT_FILENO);
-			close(tree->fd[0]);
-			close(tree->fd[1]);
-			if (handle_redir(tree->left, shell) == 0)
-			{
-				expander(tree->left->sub_list, shell);
-				close_fd(shell);
-				if (is_builtin(tree->left))
-				{
-					shell->status = execute_builtin(shell, tree->left);
-					free_minishell(shell);
-					exit(shell->status);
-				}
-				exec_cmd(tree->left, shell);
-			}
-			free_minishell(shell);
-			exit(1);
-		}
+			execute_left(tree, shell);
 		ft_lstadd_back(&(shell->pid), ft_lstnew((void *)((long)pid[0])));
 	}
 	pid[1] = fork();
 	if (pid[1] == 0)
-	{
-		dup2(tree->fd[0], STDIN_FILENO);
-		if (tree->parent)
-		{
-			dup2(tree->parent->fd[1], STDOUT_FILENO);
-			close(tree->parent->fd[1]);
-			// close(tree->parent->fd[0]);
-		}
-		close(tree->fd[0]);
-		close(tree->fd[1]);
-		if (handle_redir(tree->right, shell) == 0)
-		{
-			expander(tree->right->sub_list, shell);
-			close_fd(shell);
-			if (is_builtin(tree->right))
-			{
-				shell->status = execute_builtin(shell, tree->right);
-				free_minishell(shell);
-				exit(shell->status);
-			}
-			exec_cmd(tree->right, shell);
-		}
-		free_minishell(shell);
-		exit(1);
-	}
+		execute_right(tree, shell);
 	ft_lstadd_back(&(shell->pid), ft_lstnew((void *)((long)pid[1])));
-		// waitpid(pid[0], &shell->status, 0);
-
-	// waitpid(pid[1], &shell->status, 0);
-	// shell->status = WEXITSTATUS(shell->status);
 	return (0);
 }
+
+
 
 /**
  * handle_redir - Handles input and output redirections for a command.

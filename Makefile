@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+         #
+#    By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 17:34:18 by cshingai          #+#    #+#              #
-#    Updated: 2024/12/20 21:27:33 by cshingai         ###   ########.fr        #
+#    Updated: 2025/01/06 21:51:34 by lsouza-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS = $(addprefix srcs/, \
 			env/env_list.c \
 			env/env_utils.c \
 			env/env_print.c \
-			executor.c\
+			executor.c \
+			exec_cmd.c \
 			builtin/export.c \
 			builtin/export_utils.c \
 			builtin/export_utils2.c \

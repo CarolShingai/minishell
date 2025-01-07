@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:44:30 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/06 17:59:11 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 21:48:44 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,13 @@ int		handle_redir(t_tree	*tree, t_minishell *shell);
 void	exec_single_cmd(t_tree *tree, t_minishell *shell);
 void	wait_pid(t_minishell *shell);
 void	close_fd(t_minishell *shell);
+char	*find_full_path(t_execve *exec, t_minishell *shell);
+void	handle_command_not_found(t_execve *exec, t_minishell *shell);
+void	check_executable(char *full_path, t_execve *exec, t_minishell *shell);
+void	execute_command(char *full_path, t_execve *exec, t_minishell *shell);
+void	free_error_exec(t_execve *exec, t_minishell *shell, char *full_path);
+int		is_a_dir(char *path);
+void	free_execve(t_execve *exec);
 
 //signal.c
 void	init_signals(void);

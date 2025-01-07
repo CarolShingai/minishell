@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:21:54 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/06 19:00:29 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 22:12:31 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	process_heredoc_input(t_list *delimiter,
 	char	*expanded_delimiter;
 
 	expanded_delimiter = check_lexeme(delimiter->token.lexeme, shell, 1);
+	printf("expanded_delimiter: %s\n", expanded_delimiter);
 	while (1)
 	{
 		signal(SIGINT, sig_handler_heredoc);
