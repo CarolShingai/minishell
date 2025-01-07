@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:09:36 by cshingai          #+#    #+#             */
-/*   Updated: 2024/12/29 15:31:05 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/06 20:55:52 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int	valid_redirect(t_list *list, t_minishell *shell)
 
 int	check_syntax_error(t_list *aux, t_minishell *shell)
 {
-	if ((aux->token.type >= REDIRECT_INPUT && aux->token.type <= REDIRECT_OUTPUT_APPEND)
+	if ((aux->token.type >= REDIRECT_INPUT
+			&& aux->token.type <= REDIRECT_OUTPUT_APPEND)
 		&& (aux->next == NULL))
 	{
 		ft_putstr_fd("Minihell: syntax error near unexpected token `newline'\n",
@@ -72,7 +73,8 @@ int	check_syntax_error(t_list *aux, t_minishell *shell)
 		shell->status = 2;
 		return (0);
 	}
-	else if ((aux->token.type >= REDIRECT_INPUT && aux->token.type <= REDIRECT_OUTPUT_APPEND)
+	else if ((aux->token.type >= REDIRECT_INPUT
+			&& aux->token.type <= REDIRECT_OUTPUT_APPEND)
 		&& aux->next->token.type != WORD)
 	{
 		ft_putstr_fd("Minihell: syntax error near unexpected token `>'\n",
@@ -80,14 +82,5 @@ int	check_syntax_error(t_list *aux, t_minishell *shell)
 		shell->status = 2;
 		return (0);
 	}
-	// else if (aux->token.type == REDIRECT_HEREDOC && aux->next->token.type != WORD)
-	// {
-	// 	ft_putstr_fd("Minihell: syntax error near unexpected token `<'\n",
-	// 		STDERR_FILENO);
-	// 	return (0);
-	// }
-	// else if ((aux->token.type == REDIRECT_INPUT || aux->token.type == REDIRECT_OUTPUT)
-	// 	&& aux->next->token.type != WORD)
-	// 	return (0);
 	return (1);
 }

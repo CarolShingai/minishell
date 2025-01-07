@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:44:30 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/06 17:59:11 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 21:04:12 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "get_next_line.h"
 
 extern int volatile	g_signal;
 //****************************************************************************//
@@ -257,6 +256,7 @@ int		ft_is_space_str(char *str);
 void	expander(t_list *sub_list, t_minishell *shell);
 char	*check_lexeme(char *str, t_minishell *shell, int is_delimit);
 int		expander_var(char *str, int i, t_minishell *shell, char **result);
+void	handle_variable(char *var, t_minishell *shell, char **result);
 void	expander_word(char c, char **result);
 void	handle_quotes(char c, int *quotes, char **result);
 char	**handle_state(char *str, t_minishell *shell, char **result);

@@ -6,11 +6,20 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:31:39 by cshingai          #+#    #+#             */
-/*   Updated: 2024/12/27 20:25:05 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 20:52:48 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+void	expander_heredoc(char **line, t_minishell *shell)
+{
+	char	*temp;
+
+	temp = *line;
+	*line = check_lexeme(*line, shell, 0);
+	free(temp);
+}
 
 char	**handle_state(char *str, t_minishell *shell, char **result)
 {

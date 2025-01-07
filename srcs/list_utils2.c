@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:49:59 by cshingai          #+#    #+#             */
-/*   Updated: 2025/01/06 18:28:56 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/06 20:57:49 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,17 @@ void	free_redir(t_redir **redir_list)
 		}
 		*redir_list = NULL;
 	}
+}
+
+void	free_pid_list(t_lst **pid)
+{
+	t_lst	*curr;
+
+	while (*pid)
+	{
+		curr = *pid;
+		*pid = (*pid)->next;
+		free(curr);
+	}
+	*pid = NULL;
 }
