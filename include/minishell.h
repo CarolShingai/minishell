@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:44:30 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/06 21:04:12 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/07 22:09:25 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,10 @@ typedef struct s_execve
 }	t_execve;
 
 // main.c
+void	read_prompt(t_minishell *shell);
+void	set_prompt(t_minishell *shell);
+void	handle_shell_execution(t_minishell *shell);
+void	free_prompt(t_minishell *shell);
 
 // lexing.c
 t_list	*tokenizer(char *str);

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:59:12 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/06 19:16:01 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/07 22:07:55 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,7 @@ void	free_minishell(t_minishell *shell)
 	free_env_list(shell->envp_list);
 	shell->envp_list = NULL;
 	free_envp_str(shell->envp);
-
 	rl_clear_history();
-	// free(shell->prompt);
-	// shell->prompt = NULL;
 	free_pid_list(&shell->pid);
 }
 
