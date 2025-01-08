@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:44:30 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/08 19:00:55 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:27:29 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,8 +279,8 @@ void	process_heredoc_input(t_list *delimiter, t_minishell *shell,
 			int fd, char *file_path);
 
 //handle_redir.c
-int		handle_output_append(t_redir *redir, char *file);
-int		handle_input_heredoc(t_redir *redir, char *file);
+int		handle_output_append(t_redir *redir, char *file, t_minishell *shell);
+int		handle_input_heredoc(t_redir *redir, char *file, t_minishell *shell);
 int		handle_redir(t_tree	*tree, t_minishell *shell);
 
 //handle_pipe.c

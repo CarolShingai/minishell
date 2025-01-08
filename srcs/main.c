@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 17:49:25 by cshingai          #+#    #+#             */
-/*   Updated: 2025/01/07 22:10:22 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:22:41 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ int	main(int argc __attribute__((unused)), \
 	read_prompt(&shell);
 	rl_clear_history();
 	free_minishell(&shell);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
 	return (shell.status);
 }
 
