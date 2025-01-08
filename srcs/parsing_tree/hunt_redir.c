@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hunt_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:28:55 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/07 22:50:49 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/08 18:33:24 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,3 @@ void	redir_removal(t_list **node, t_list	**tkn_list)
 	free(to_be_free);
 	to_be_free = NULL;
 }
-
