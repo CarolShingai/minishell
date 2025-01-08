@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 16:21:54 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/06 19:29:47 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:52:27 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	process_heredoc_input(t_list *delimiter,
 	char	*expanded_delimiter;
 
 	expanded_delimiter = check_lexeme(delimiter->token.lexeme, shell, 1);
+	printf("expanded_delimiter: %s\n", expanded_delimiter);
 	while (1)
 	{
 		signal(SIGINT, sig_handler_heredoc);
