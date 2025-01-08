@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:44:30 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/08 19:04:13 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:12:24 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void	read_prompt(t_minishell *shell);
 void	set_prompt(t_minishell *shell);
 void	handle_shell_execution(t_minishell *shell);
 void	free_prompt(t_minishell *shell);
+void	print_menu(void);
 
 // lexing.c
 t_list	*tokenizer(char *str);
