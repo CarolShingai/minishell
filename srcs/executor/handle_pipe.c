@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 22:28:47 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/07 22:05:13 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/08 18:41:58 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	execute_right(t_tree *tree, t_minishell *shell)
 
 int	handle_pipe(t_tree *tree, t_minishell *shell, int left)
 {
-	pid_t pid[2];
+	pid_t	pid[2];
 
 	if (left == 1)
 	{

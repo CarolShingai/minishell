@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:04:36 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/06 21:53:19 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/08 18:41:32 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,4 @@ void	execute_command(char *full_path, t_execve *exec, t_minishell *shell)
 	perror(full_path);
 	free_error_exec(exec, shell, full_path);
 	exit(1);
-}
-
-void	free_error_exec(t_execve *exec, t_minishell *shell, char *full_path)
-{
-	free(full_path);
-	free_execve(exec);
-	free_minishell(shell);
 }

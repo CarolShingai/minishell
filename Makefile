@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+         #
+#    By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 17:34:18 by cshingai          #+#    #+#              #
-#    Updated: 2025/01/08 18:28:09 by cshingai         ###   ########.fr        #
+#    Updated: 2025/01/08 18:40:06 by lsouza-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS = $(addprefix srcs/, \
 			executor/handle_pipe.c \
 			executor/handle_redir.c \
 			executor/exec_cmd.c \
+			executor/executor_clean.c \
 			builtin/export.c \
 			builtin/export_utils.c \
 			builtin/export_utils2.c \

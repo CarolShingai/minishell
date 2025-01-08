@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 21:39:32 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/07 22:24:50 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/08 18:45:38 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ int	handle_redir(t_tree	*tree, t_minishell *shell)
 	while (node)
 	{
 		expanded_file = check_lexeme(node->file, shell, 0);
-		if (node->rd_type == REDIRECT_OUTPUT || node->rd_type == REDIRECT_OUTPUT_APPEND)
+		if (node->rd_type == REDIRECT_OUTPUT
+			|| node->rd_type == REDIRECT_OUTPUT_APPEND)
 		{
 			if (handle_output_append(node, expanded_file) == 1)
 				return (1);
 		}
-		else if (node->rd_type == REDIRECT_INPUT || node->rd_type == REDIRECT_HEREDOC)
+		else if (node->rd_type == REDIRECT_INPUT
+			|| node->rd_type == REDIRECT_HEREDOC)
 		{
 			if (handle_input_heredoc(node, expanded_file) == 1)
 				return (1);
@@ -41,8 +43,8 @@ int	handle_redir(t_tree	*tree, t_minishell *shell)
 
 int	handle_output_append(t_redir *redir, char *file)
 {
-	int fd;
-	
+	int	fd;
+
 	if (redir->rd_type == REDIRECT_OUTPUT)
 	{
 		fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
@@ -70,8 +72,8 @@ int	handle_output_append(t_redir *redir, char *file)
 
 int	handle_input_heredoc(t_redir *redir, char *file)
 {
-	int fd;
-	
+	int	fd;
+
 	if (redir->rd_type == REDIRECT_INPUT)
 	{
 		fd = open(file, O_RDONLY);
@@ -92,4 +94,3 @@ int	handle_input_heredoc(t_redir *redir, char *file)
 	}
 	return (0);
 }
-
