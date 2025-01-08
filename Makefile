@@ -6,7 +6,7 @@
 #    By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 17:34:18 by cshingai          #+#    #+#              #
-#    Updated: 2025/01/06 21:51:34 by lsouza-r         ###   ########.fr        #
+#    Updated: 2025/01/07 22:50:24 by lsouza-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,10 @@ SRCS = $(addprefix srcs/, \
 			expander.c \
 			expander2.c \
 			heredoc.c \
+			exec_single_cmd.c \
+			handle_pipe.c \
+			handle_redir.c \
+			hunt_redir.c \
 			get_next_line.c \
 		)
 

@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:44:30 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/06 21:48:44 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/07 22:50:06 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,6 @@ t_list	*hunt_last_pipe(t_list	*tkn_list);
 t_tree	*build_root(t_list	*tkn_list);
 void	build_branch(t_list *tkn_list, t_tree *pivot);
 void	*free_tree(t_tree **tree);
-t_redir	*hunt_redir(t_list	**tkn_list);
 
 //validation.c
 int		valid_redirect(t_list *list, t_minishell *shell);
@@ -234,12 +233,11 @@ int		valide_arg_length(char *arg);
 void	get_path(t_minishell *shell);
 void	get_args(t_list *sub_list, t_execve *exec);
 void	executor(t_tree	*tree, t_minishell *shell);
-int		handle_pipe(t_tree *tree, t_minishell *shell, int left);
-void	exec_cmd(t_tree	*tree, t_minishell *shell);
-int		handle_redir(t_tree	*tree, t_minishell *shell);
-void	exec_single_cmd(t_tree *tree, t_minishell *shell);
 void	wait_pid(t_minishell *shell);
 void	close_fd(t_minishell *shell);
+
+//exec_cmd.c
+void	exec_cmd(t_tree	*tree, t_minishell *shell);
 char	*find_full_path(t_execve *exec, t_minishell *shell);
 void	handle_command_not_found(t_execve *exec, t_minishell *shell);
 void	check_executable(char *full_path, t_execve *exec, t_minishell *shell);
@@ -275,5 +273,24 @@ void	create_heredoc(t_list *delimiter, int tag, t_minishell *shell);
 char	*create_file_path(int tag);
 void	process_heredoc_input(t_list *delimiter, t_minishell *shell,
 			int fd, char *file_path);
+
+//handle_redir.c
+int	handle_output_append(t_redir *redir, char *file);
+int	handle_input_heredoc(t_redir *redir, char *file);
+int	handle_redir(t_tree	*tree, t_minishell *shell);
+
+//handle_pipe.c
+void	execute_left(t_tree *tree, t_minishell *shell);
+void	execute_right(t_tree *tree, t_minishell *shell);
+int		handle_pipe(t_tree *tree, t_minishell *shell, int left);
+
+//exec_single_cmd.c
+void	exec_single_cmd(t_tree *tree, t_minishell *shell);
+void	exec_single_builtin(t_tree *tree, t_minishell *shell);
+void	execute_single_cmd(t_tree *tree, t_minishell *shell);
+
+//hunt_redir.c
+t_redir	*hunt_redir(t_list	**tkn_list);
+void	redir_removal(t_list **node, t_list	**tkn_list);
 
 #endif

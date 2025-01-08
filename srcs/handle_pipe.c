@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 22:28:47 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/06 22:46:45 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/07 22:05:13 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	execute_right(t_tree *tree, t_minishell *shell)
 	{
 		dup2(tree->parent->fd[1], STDOUT_FILENO);
 		close(tree->parent->fd[1]);
-		// close(tree->parent->fd[0]);
 	}
 	close(tree->fd[0]);
 	close(tree->fd[1]);
@@ -75,9 +74,5 @@ int	handle_pipe(t_tree *tree, t_minishell *shell, int left)
 	if (pid[1] == 0)
 		execute_right(tree, shell);
 	ft_lstadd_back(&(shell->pid), ft_lstnew((void *)((long)pid[1])));
-		// waitpid(pid[0], &shell->status, 0);
-
-	// waitpid(pid[1], &shell->status, 0);
-	// shell->status = WEXITSTATUS(shell->status);
 	return (0);
 }
