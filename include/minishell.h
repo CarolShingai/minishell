@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:44:30 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/08 19:12:24 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:19:16 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+
+# define RED "\033[38;5;196m"
+# define REDD2 "\033[38;5;124m"
+# define REDD1 "\033[38;5;202m"
+# define ORANGE "\033[38;5;208m"
+# define ORANGE1 "\033[38;5;214m"
+# define RESET "\033[0m"
 
 extern int volatile	g_signal;
 //****************************************************************************//

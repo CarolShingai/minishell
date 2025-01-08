@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 18:06:08 by cshingai          #+#    #+#             */
-/*   Updated: 2025/01/08 19:27:17 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:43:17 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ int	ft_is_space_str(char *str)
 
 void	print_menu(void)
 {
-	ft_printf("\n");
+	ft_printf(RED"\n");
 	ft_printf("  ░░░╗   ░░░╗░░╗░░░╗   ░░╗░░╗");
 	ft_printf("░░░░░░░╗░░╗  ░░╗░░░░░░░╗░░╗     ░░╗     \n");
-	ft_printf("  ░░░░╗ ░░░░║░░║░░░░╗  ░░║░░║");
+	ft_printf(RED"  ░░░░╗ ░░░░║░░║░░░░╗  ░░║░░║");
 	ft_printf("░░╔════╝░░║  ░░║░░╔════╝░░║     ░░║     \n");
 	ft_printf("  ░░╔░░░░╔░░║░░║░░╔░░╗ ░░║░░║");
 	ft_printf("░░░░░░░╗░░░░░░░║░░░░░╗  ░░║     ░░║     \n");
@@ -70,8 +70,8 @@ void	print_menu(void)
 	ft_printf("╚════░░║░░╔══░░║░░╔══╝  ░░║     ░░║     \n");
 	ft_printf("  ░░║ ╚═╝ ░░║░░║░░║ ╚░░░░║░░║");
 	ft_printf("░░░░░░░║░░║  ░░║░░░░░░░╗░░░░░░░╗░░░░░░░╗\n");
-	ft_printf("  ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝");
-	ft_printf("╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝\n");
-	ft_printf("                  by Carol and Luana\n");
-	ft_printf("\n");
+	ft_printf(REDD1"  ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝");
+	ft_printf(REDD1"╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝\n");
+	ft_printf(ORANGE1"                  by Carol and Luana\n");
+	ft_printf(RESET"\n");
 }
