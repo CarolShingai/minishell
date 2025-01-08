@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+         #
+#    By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 17:34:18 by cshingai          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2025/01/07 22:16:56 by cshingai         ###   ########.fr        #
-=======
-#    Updated: 2025/01/07 22:50:24 by lsouza-r         ###   ########.fr        #
->>>>>>> origin/release/norminette-luana
+#    Updated: 2025/01/08 18:05:46 by cshingai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,14 +47,10 @@ SRCS = $(addprefix srcs/, \
 			expander.c \
 			expander2.c \
 			heredoc.c \
-<<<<<<< HEAD
-=======
 			exec_single_cmd.c \
 			handle_pipe.c \
 			handle_redir.c \
 			hunt_redir.c \
-			get_next_line.c \
->>>>>>> origin/release/norminette-luana
 		)
 
 OBJ = $(SRCS:srcs/%.c=obj/%.o)
