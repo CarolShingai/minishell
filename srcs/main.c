@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 17:49:25 by cshingai          #+#    #+#             */
-/*   Updated: 2025/01/08 19:18:11 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:52:42 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int	main(int argc __attribute__((unused)), \
 	ft_printf("\nexit\n");
 	rl_clear_history();
 	free_minishell(&shell);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
 	return (shell.status);
 }
 

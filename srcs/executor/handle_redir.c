@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 21:39:32 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/08 18:45:38 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:46:47 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int	handle_redir(t_tree	*tree, t_minishell *shell)
 		if (node->rd_type == REDIRECT_OUTPUT
 			|| node->rd_type == REDIRECT_OUTPUT_APPEND)
 		{
-			if (handle_output_append(node, expanded_file) == 1)
+			if (handle_output_append(node, expanded_file, shell) == 1)
 				return (1);
 		}
 		else if (node->rd_type == REDIRECT_INPUT
 			|| node->rd_type == REDIRECT_HEREDOC)
 		{
-			if (handle_input_heredoc(node, expanded_file) == 1)
+			if (handle_input_heredoc(node, expanded_file, shell) == 1)
 				return (1);
 		}
 		free(expanded_file);
@@ -41,36 +41,48 @@ int	handle_redir(t_tree	*tree, t_minishell *shell)
 	return (0);
 }
 
-int	handle_output_append(t_redir *redir, char *file)
+void	close_fd(t_minishell *shell)
+{
+	t_lst	*curr;
+	t_lst	*temp;
+	int		i;
+
+	curr = shell->fd_list;
+	while (curr)
+	{
+		close((long)curr->content);
+		temp = curr;
+		curr = curr->next;
+		free(temp);
+	}
+	shell->fd_list = NULL;
+	i = 3;
+	while (i < 1024)
+		close(i++);
+}
+
+int	handle_output_append(t_redir *redir, char *file, t_minishell *shell)
 {
 	int	fd;
 
 	if (redir->rd_type == REDIRECT_OUTPUT)
-	{
 		fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-		if (fd == -1)
-		{
-			perror(file);
-			free(file);
-			return (1);
-		}
-	}
 	else
-	{
 		fd = open(file, O_CREAT | O_WRONLY | O_APPEND, 0644);
-		if (fd == -1)
-		{
-			perror(file);
-			free(file);
-			return (1);
-		}
+	if (fd == -1)
+	{
+		perror(file);
+		free(file);
+		return (1);
 	}
+	ft_lstadd_back(&(shell->fd_list),
+		ft_lstnew((void *)((long)fd)));
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
 	return (0);
 }
 
-int	handle_input_heredoc(t_redir *redir, char *file)
+int	handle_input_heredoc(t_redir *redir, char *file, t_minishell *shell)
 {
 	int	fd;
 
@@ -92,5 +104,7 @@ int	handle_input_heredoc(t_redir *redir, char *file)
 		dup2(fd, STDIN_FILENO);
 		close(fd);
 	}
+	ft_lstadd_back(&(shell->fd_list),
+			ft_lstnew((void *)((long)fd)));
 	return (0);
 }
