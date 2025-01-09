@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 22:28:47 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/09 18:30:26 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/09 19:56:20 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	execute_left(t_tree *tree, t_minishell *shell)
 	dup2(tree->fd[1], STDOUT_FILENO);
 	close(tree->fd[0]);
 	close(tree->fd[1]);
-	if (handle_redir(tree->left, shell) == 0)
+	if (handle_redir(tree->left, shell) == 0 && tree->left->sub_list != NULL)
 	{
 		expander(tree->left->sub_list, shell);
 		close_fd(shell);
@@ -46,7 +46,7 @@ void	execute_right(t_tree *tree, t_minishell *shell)
 	}
 	close(tree->fd[0]);
 	close(tree->fd[1]);
-	if (handle_redir(tree->right, shell) == 0)
+	if (handle_redir(tree->right, shell) == 0 && tree->right->sub_list != NULL)
 	{
 		expander(tree->right->sub_list, shell);
 		close_fd(shell);
