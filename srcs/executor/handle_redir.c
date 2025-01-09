@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redir.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 21:39:32 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/08 20:46:47 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:02:39 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,6 @@ int	handle_redir(t_tree	*tree, t_minishell *shell)
 		node = node->next;
 	}
 	return (0);
-}
-
-void	close_fd(t_minishell *shell)
-{
-	t_lst	*curr;
-	t_lst	*temp;
-	int		i;
-
-	curr = shell->fd_list;
-	while (curr)
-	{
-		close((long)curr->content);
-		temp = curr;
-		curr = curr->next;
-		free(temp);
-	}
-	shell->fd_list = NULL;
-	i = 3;
-	while (i < 1024)
-		close(i++);
 }
 
 int	handle_output_append(t_redir *redir, char *file, t_minishell *shell)
@@ -105,6 +85,6 @@ int	handle_input_heredoc(t_redir *redir, char *file, t_minishell *shell)
 		close(fd);
 	}
 	ft_lstadd_back(&(shell->fd_list),
-			ft_lstnew((void *)((long)fd)));
+		ft_lstnew((void *)((long)fd)));
 	return (0);
 }

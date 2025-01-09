@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+         #
+#    By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 17:34:18 by cshingai          #+#    #+#              #
-#    Updated: 2025/01/08 18:40:06 by lsouza-r         ###   ########.fr        #
+#    Updated: 2025/01/08 20:56:05 by cshingai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,12 +42,12 @@ SRCS = $(addprefix srcs/, \
 			builtin/export.c \
 			builtin/export_utils.c \
 			builtin/export_utils2.c \
-			builtin/exit.c\
+			builtin/exit.c \
 			builtin/unset.c \
 			builtin/pwd.c \
 			builtin/echo.c \
 			builtin/change_directory.c\
-			builtin/exec_builtin.c\
+			builtin/exec_builtin.c \
 			expander/expander.c \
 			expander/expander2.c \
 			parsing_tree/parsing-tree.c \
