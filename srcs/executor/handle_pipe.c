@@ -29,6 +29,9 @@ void	execute_left(t_tree *tree, t_minishell *shell)
 		}
 		exec_cmd(tree->left, shell);
 	}
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
 	free_minishell(shell);
 	exit(1);
 }
@@ -50,11 +53,16 @@ void	execute_right(t_tree *tree, t_minishell *shell)
 		if (is_builtin(tree->right))
 		{
 			shell->status = execute_builtin(shell, tree->right);
+			close(STDIN_FILENO);
+			close(STDOUT_FILENO);
 			free_minishell(shell);
 			exit(shell->status);
 		}
 		exec_cmd(tree->right, shell);
 	}
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
 	free_minishell(shell);
 	exit(1);
 }

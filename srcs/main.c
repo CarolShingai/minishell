@@ -19,7 +19,7 @@ int	main(int argc __attribute__((unused)), \
 {
 	t_minishell	shell;
 
-	print_menu();
+	//print_menu();
 	init_shell(&shell);
 	shell.envp_list = create_env_list(envp);
 	read_prompt(&shell);

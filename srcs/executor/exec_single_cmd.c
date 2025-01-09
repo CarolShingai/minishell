@@ -52,8 +52,10 @@ void	execute_single_cmd(t_tree *tree, t_minishell *shell)
 	}
 	else
 	{
-		free_minishell(shell);
+		close(STDIN_FILENO);
+		close(STDOUT_FILENO);
 		close_fd(shell);
+		free_minishell(shell);
 	}
 	exit(1);
 }

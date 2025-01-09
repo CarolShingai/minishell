@@ -16,6 +16,9 @@ void	free_error_exec(t_execve *exec, t_minishell *shell, char *full_path)
 {
 	free(full_path);
 	free_execve(exec);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
 	free_minishell(shell);
 }
 
@@ -44,7 +47,7 @@ void	close_fd(t_minishell *shell)
 {
 	t_lst	*curr;
 	t_lst	*temp;
-	int		i;
+	//int		i;
 
 	curr = shell->fd_list;
 	while (curr)
@@ -55,7 +58,7 @@ void	close_fd(t_minishell *shell)
 		free(temp);
 	}
 	shell->fd_list = NULL;
-	i = 3;
-	while (i < 1024)
-		close(i++);
+	// i = 3;
+	// while (i < 1024)
+		// close(i++);
 }

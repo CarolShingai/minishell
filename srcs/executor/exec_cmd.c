@@ -61,6 +61,9 @@ void	handle_command_not_found(t_execve *exec, t_minishell *shell)
 {
 	ft_printf_fd(STDERR_FILENO, "%s: No such file or directory\n", exec->cmd);
 	free_execve(exec);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
 	free_minishell(shell);
 	exit(127);
 }
