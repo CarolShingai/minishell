@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:44:30 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/08 20:52:19 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/09 18:31:40 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,6 +295,7 @@ int		handle_redir(t_tree	*tree, t_minishell *shell);
 void	execute_left(t_tree *tree, t_minishell *shell);
 void	execute_right(t_tree *tree, t_minishell *shell);
 int		handle_pipe(t_tree *tree, t_minishell *shell, int left);
+void	close_stdio(void);
 
 //exec_single_cmd.c
 void	exec_single_cmd(t_tree *tree, t_minishell *shell);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:07:56 by cshingai          #+#    #+#             */
-/*   Updated: 2025/01/08 20:30:49 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/09 18:03:41 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int	ft_exit(t_minishell *shell, char **arg)
 	rl_clear_history();
 	free(shell->prompt);
 	close_fd(shell);
+	close(shell->fd_stdin);
+	close(shell->fd_stdout);
+	free_pid_list(&shell->pid);
 	exit_status = exit_status % 256;
 	ft_printf_fd(STDERR_FILENO, "exit\n");
 	exit(exit_status);

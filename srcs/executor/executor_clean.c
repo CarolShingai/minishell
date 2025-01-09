@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_clean.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:37:10 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/08 20:40:44 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/01/09 18:28:23 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	close_fd(t_minishell *shell)
 {
 	t_lst	*curr;
 	t_lst	*temp;
-	//int		i;
 
 	curr = shell->fd_list;
 	while (curr)
@@ -58,7 +57,4 @@ void	close_fd(t_minishell *shell)
 		free(temp);
 	}
 	shell->fd_list = NULL;
-	// i = 3;
-	// while (i < 1024)
-		// close(i++);
 }

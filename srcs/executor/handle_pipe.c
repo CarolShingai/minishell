@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 22:28:47 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/01/08 20:52:29 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/01/09 18:30:26 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ void	execute_right(t_tree *tree, t_minishell *shell)
 		}
 		exec_cmd(tree->right, shell);
 	}
-	close(STDIN_FILENO);
-	close(STDOUT_FILENO);
-	close(STDERR_FILENO);
+	close_stdio();
 	free_minishell(shell);
 	exit(1);
 }
@@ -83,4 +81,11 @@ int	handle_pipe(t_tree *tree, t_minishell *shell, int left)
 		execute_right(tree, shell);
 	ft_lstadd_back(&(shell->pid), ft_lstnew((void *)((long)pid[1])));
 	return (0);
+}
+
+void	close_stdio(void)
+{
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
 }
